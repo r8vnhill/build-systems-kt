@@ -1,0 +1,2 @@
+# Windows
+.\gradlew.bat detekt

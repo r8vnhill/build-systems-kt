@@ -1,0 +1,2 @@
+# Unit
+./gradlew detekt
