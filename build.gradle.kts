@@ -22,4 +22,12 @@ tasks.register("cleanAll") {
     dependsOn(":subproject1:clean", ":subproject2:clean", ":subproject3:clean")
 }
 
-
+tasks.register("countCompiledSize") {
+    group = "build"
+    description = "Count the size of the compiled classes"
+    dependsOn(
+        ":subproject1:countCompiledSize",
+        ":subproject2:countCompiledSize",
+        ":subproject3:countCompiledSize"
+    )
+}

@@ -21,3 +21,17 @@ tasks.test {
 kotlin {
     jvmToolchain(17)
 }
+
+tasks.register("countCompiledSize") {
+    group = "build"
+    description = "Count the size of the compiled classes"
+    dependsOn("compileKotlin")
+    doLast {
+        val files = fileTree("build/classes/kotlin/main")
+        var size = 0L
+        for (file in files) {
+            size += file.length()
+        }
+        println("The size of the compiled classes is $size bytes")
+    }
+}
