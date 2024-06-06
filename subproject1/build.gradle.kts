@@ -32,6 +32,26 @@ tasks.register("countCompiledSize") {
         for (file in files) {
             size += file.length()
         }
-        println("The size of the compiled classes is $size bytes")
+        println("The size of the compiled classes in subproject1 is $size bytes")
+    }
+}
+
+class KotlinFilesReportPlugin : Plugin<Project> {
+    override fun apply(project: Project) {
+        project.tasks.register("generateKotlinFilesReport") {
+            group = "reporting"
+            description = "Generates a report of all Kotlin files in the project."
+
+            doLast {
+                val kotlinFiles = project.fileTree("src").matching {
+                    include("**/*.kt")
+                }.files
+
+                println("Kotlin Files Report:\n\n")
+                for (file in kotlinFiles) {
+                    println(file.name)
+                }
+            }
+        }
     }
 }

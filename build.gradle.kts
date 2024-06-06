@@ -31,3 +31,25 @@ tasks.register("countCompiledSize") {
         ":subproject3:countCompiledSize"
     )
 }
+
+class KotlinFilesReportPlugin : Plugin<Project> {
+    override fun apply(project: Project) {
+        project.tasks.register("generateKotlinFilesReport") {
+            group = "reporting"
+            description = "Generates a report of all Kotlin files in the project."
+
+            doLast {
+                val kotlinFiles = project.fileTree(".").matching {
+                    include("**/*.kt", "**/*.kts")
+                }.files
+
+                println("Kotlin Files Report:\n\n")
+                for (file in kotlinFiles) {
+                    println(file.name)
+                }
+            }
+        }
+    }
+}
+
+apply<KotlinFilesReportPlugin>()
