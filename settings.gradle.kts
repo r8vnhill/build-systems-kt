@@ -1,6 +1,6 @@
 rootProject.name = "build-systems-kt"
 
-include(":subproject1", ":subproject2", ":subproject3")
+include(":echoLib", ":echoApp")
 
 pluginManagement {
     repositories {
